@@ -1,0 +1,9 @@
+git  clone .... //克隆文件到本地
+上传:
+ls //列出某个文件夹下的所有文件或文件夹
+cd  .........  //进入某个文件夹
+git status //状态查看
+git add homework/.....  //添加文件
+git commit -m "...."  homework/....  //提交文件
+git pull  //从服务器拉取文件
+git push //推送文件
