@@ -1,13 +1,13 @@
-ls
-cd ....
-git status
-git add homework/....
-git status
-git commit -m "...." homework/...
-git config --global user.email ".."
-git config --global user.name "..."
-git commit -m "..." homework/...
-git pull
-git push
-git status
+ls    //列出某个文件夹下的文件
+cd ....   //进入某个目录 
+git status   //查看状态
+git add homework/....   //添加某个文件到 homework下
+git status 
+git commit -m "...." homework/...  //提交文件
+git config --global user.email ".."  //email
+git config --global user.name "..."  //name
+git commit -m "..." homework/...  
+git pull  //从服务端拉去文件
+git push //文件推送
+git status  
 /d/Code/ZenCloud2
