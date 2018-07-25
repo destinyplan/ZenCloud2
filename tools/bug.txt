@@ -1,0 +1,9 @@
+
+PS D:\python> cd 'd:\python'; ${env:PYTHONIOENCODING}='UTF-8'; ${env:PYTHONUNBUFFERED}='1'; & 'python' 'C:\Users\强子\.vscode\extensions\ms-python.python-2018.4.0\pythonFiles\PythonTools\visualstudio_py_launcher.py' 'd:\python' '50879' '34806ad9-833a-4524-8cd6-18ca4aa74f14' 'RedirectOutput,RedirectOutput' 'd:\python\pro1.py'
+& : 无法将“python”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路
+径，请确保路径正确，然后再试一次。
+所在位置 行:1 字符: 81
++ ... NIOENCODING}='UTF-8'; ${env:PYTHONUNBUFFERED}='1'; & 'python' 'C:\Use ...
++                                                          ~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (python:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
