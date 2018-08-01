@@ -119,18 +119,17 @@ while True:
     if oper=='q':
         break
 num = int(oper)
-l31=[]
+gobang=[]
 i=0
 while i < num:
-    l32=[]
+    k=[]
     j=0
     while j < num:
-        l32.append(0)
+        k.append(0)
         j=j+1
-    l31.append(l32)
+    gobang.append(k)
     i=i+1
-for line in l31:
+for line in gobang:
     for key in line:
         print(key,end=' ')
     print(' ')
-
