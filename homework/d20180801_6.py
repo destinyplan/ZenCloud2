@@ -108,9 +108,29 @@
     #         print('您选择了退出程序...')
     #         break
     # print("正在退出...")
-index=0
+# index=0
+# while True:
+#     print ("0 0 0 0 0 0 ")
+#     index=index+1
+#     if index==6:
+#         breakl31=[]
 while True:
-    print ("0 0 0 0 0 0 ")
-    index=index+1
-    if index==6:
+    oper=input("size=")
+    if oper=='q':
         break
+num = int(oper)
+l31=[]
+i=0
+while i < num:
+    l32=[]
+    j=0
+    while j < num:
+        l32.append(0)
+        j=j+1
+    l31.append(l32)
+    i=i+1
+for line in l31:
+    for key in line:
+        print(key,end=' ')
+    print(' ')
+
