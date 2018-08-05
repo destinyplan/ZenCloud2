@@ -187,54 +187,7 @@ asdjaksgl
 # g=a.index(3)
 # h=a.count(1)
 
-#顺序语句
-#选择语句 if
-#循环语句 for while do-while foreach 
 
-#if
-#if [elif] [elif] [else]
-# if 条件:
-#     语句1
-# elif 条件2:
-#     语句2
-# elif 条件3:
-#     语句3
-# else:
-#     语句4
-
-tagetAge=18
-inputAge=-1
-inputAge=int(input("请输入您的年龄:"))
-flag=inputAge>tagetAge
-flag1=inputAge>16
-print(flag)
-if flag:
-    print("巨婴")
-    print("你成年了,请负起责任,不要当巨婴")
-    if inputAge>50:
-        print("AAA:你老了")
-    else:
-        print("BBB:你壮了")
-    print("FFFFF")
-elif flag1:
-    print("你该付刑事责任了..")
-    pass
-else:
-    print("你还小,不要喝酒")
-    pass
-print('请吃饭了2....')
-
-#1.数据初始化或者定义
-#2.数据的获取
-#3.分析并处理数据
-#3.1 基本比较
-#3.2 不同年两端的处理
-#3.2.1 if1
-#3.2.1.1
-#3.2.1.2
-#3.2.2 if2
-#3.2.3 else
-#4.打印了东西
 
 
 
