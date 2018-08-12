@@ -1,0 +1,70 @@
+一,日常操作
+1.1:ls
+1.2:cd
+1.3:pwd
+1.4:clear
+1.5:ll
+1.6:history
+1.7:id
+1.8:su
+1.9:man
+1.10:tree
+1.11:echo
+1.12:exit
+二，文件日常
+2.1:mkdir dirpath
+2.2:touch file
+2.3:rm -frvi file/dir
+2.4:cp -rfvip targefile newfile
+2.5:file filepath
+2.6:mv -rfvi oldfile newfile
+2.7:rmdir dir
+2.8:more less cat head tail vim
+2.9:find
+三，用户管理
+3.1:useradd {[-u|-g|G]:[userid:groupid]} username
+3.2:userdel [-r] username
+3.3:usermod -u uid -g gid -G gid [-LU] username
+3.4:groupadd -g gid groupname
+3.5:groupdel gname
+3.6:groupmod
+3.7:passwd [-lu] username
+四，vim
+a/i/o
+gg
+G
+nG
+nEnter
+yy=1yy
+nyy
+dd=1dd
+ndd
+p
+:set nu/nonu
+?key
+:noh
+u
+:s/a/b
+:.s/a/b/g
+:x,ys/a/b/g
+h,j,k,l
+Ctrl+b/f/u/d/h/l
+0/$
+n+space
+n+方向键
+wq!
+Esc
+Shift+;
+五，权限管理
+5.1:chown [-Rcvf] u:g file
+5.2:chgrp [-R] group file
+5.3:chmod [-Rcfv] u/g/o/a+r u/g/o/a-rw u=rwx 770 file
+5.4:getfacl file
+5.5:setfacl [-R] -m/x/b u:username:rwx file
+5.6:chacl
+5.7:chmod u+s g+s u-s 4xxx 2xxx 1xxx o+t file
+5.8:lsattr file
+5.9:chattr +/-iASa file
+
+
+ls [-la] [mode] filepath
