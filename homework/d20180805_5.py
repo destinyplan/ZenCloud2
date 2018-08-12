@@ -23,52 +23,52 @@
 # 方法定义：find()方法检测字符串中是否包含子字符串 str ，如果指定 beg（开始） 和 end（结束） 范围，则检查是否包含在指定范围内，如果包含子字符串返回开始的索引值，否自返回-1
 # 暂时没有完全实现功能：
 # strOrign="123456789ABCDEF"
-# strTarget='568'
-# beginIndex=0
-# endIndex=len(strOrign)-1
-# lowestIndex=-1
+# strcount='568'
+# begini=0
+# endi=len(strOrign)-1
+# lowesti=-1
 
 # i=0
-# while i<=endIndex:
-#     if strTarget[0] == strOrign[i]:
-#         index=i
-#         originNextIndex=i+1
-#         targetNextIndex=0+1
-#         #检查一下以上两个index有没有越位
+# while i<=endi:
+#     if strcount[0] == strOrign[i]:
+#         i=i
+#         originNexti=i+1
+#         countNexti=0+1
+#         #检查一下以上两个i有没有越位
 #         pass
-#         while strTarget[targetNextIndex]==strOrign[originNextIndex]:
-#             originNextIndex=originNextIndex+1
-#             targetNextIndex=targetNextIndex+1
+#         while strcount[countNexti]==strOrign[originNexti]:
+#             originNexti=originNexti+1
+#             countNexti=countNexti+1
 #             #如果源字符串到头了,循环结束
 #             #如果目标到头了，循环也结束
-#             if originNextIndex>=len(strOrign):
+#             if originNexti>=len(strOrign):
 #                 break
-#             if targetNextIndex>=len(strTarget):
+#             if countNexti>=len(strcount):
 #                 break
-#         #这两个下标的关系:tNextIndex+i=oNextIndex
-#         print(targetNextIndex)
-#         print(originNextIndex)
-#         # targetNextIndex==2
-#         # targetNextIndex==len(strTarget)//找到了
-#         if targetNextIndex==len(strTarget):
+#         #这两个下标的关系:tNexti+i=oNexti
+#         print(countNexti)
+#         print(originNexti)
+#         # countNexti==2
+#         # countNexti==len(strcount)//找到了
+#         if countNexti==len(strcount):
 #             pass
 #             #找到了
-#             lowestIndex=i
+#             lowesti=i
 #             break
 #         else:
 #             pass
 #             #没找到
-#             i=originNextIndex
+#             i=originNexti
 #             continue
 #         pass
 #     else:
-#         if i==endIndex:
-#             lowestIndex=-1
+#         if i==endi:
+#             lowesti=-1
 #             break
 #         i=i+1
 #         continue
 #     i=i+1
-# print("xxxxxxx=",lowestIndex)
+# print("xxxxxxx=",lowesti)
 
 # 3.str.strip方法的实现：
 # 方法定义：strip() 方法用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列。
@@ -142,8 +142,8 @@
 # print(result)
 
 
-# 7.list.index方法的实现：
-# 方法定义：index() 函数用于从列表中找出某个值第一个匹配项的索引位置。
+# 7.list.i方法的实现：
+# 方法定义：i() 函数用于从列表中找出某个值第一个匹配项的索引位置。
 # list1=[1,2,3,4,5]
 # a=3
 # i=0
@@ -205,3 +205,178 @@
 #         j=j+1
 #     i=i+1
 # print(list1)
+
+# 13.str.center方法的实现：
+# 方法定义：center()返回一个原字符串居中,并使用空格填充至长度 width 的新字符串。默认填充字符为空格。
+# A="qwertyuiop"
+# fill=input("please input a word what you want to fill:")
+# width=int(input('please input width you want:'))
+# Len=len(A)
+# halfLen=int(Len/2)
+# halfWidth=int(width/2)
+# L=A[0:halfLen]
+# Rr=A[halfLen:]
+# L1=''
+# Len1=len(L)
+# Len2=len(Rr)
+# i=0
+# while i<halfWidth-Len2 :
+#     Rr=Rr+fill
+#     i+=1
+# i1=0
+# while i1<=halfWidth-Len1-1 :
+#     L1=L1+fill
+#     if i1==halfWidth-Len1-1 :
+#         L1=L1+L
+#         break
+#     i1+=1
+# print(L1+Rr)
+
+# 14.str.count方法的实现：
+# 方法的定义：Python count() 方法用于统计字符串里某个字符出现的次数。可选参数为在字符串搜索的开始与结束位置。
+# Old='ewytyuwqteygfhjgfsjhghgyutqwyuteuyqqw'
+# count=input("请输入查询内容:")
+# i=0
+# num=0
+# while i<len(Old):
+#     if Old[i] == count:
+#         num=num+1
+#     i=i+1 
+# print(num)  
+
+# 15.str.isdigit方法的实现：
+# 方法的定义：Python isdigit() 方法检测字符串是否只由数字组成。
+# Old='5566342sgytyusfdsqqwe'
+# i=0
+# a=False
+# while i<len(Old):
+#     if 48<=ord(Old[i])<=57:
+#         a=True
+#     else :
+#         a=False
+#         break
+#     i=i+1
+# print(a)
+
+# 16.str.isalnum方法的实现：
+# 方法的定义：Python isalnum() 方法检测字符串是否由字母和数字组成。
+# Old='78979hgajhgdajgqeq'
+# i=0
+# a=False
+# while i<len(Old):
+#     if 48<=ord(Old[i])<=57 or 65<=ord(Old[i])<=90 or 97<=ord(Old[i])<=122:
+#         a=True
+#     else :
+#         a=False
+#         break
+#     i=i+1
+# print(a)
+
+# 17.str.isupper方法的实现：
+# 方法的定义：Python isupper() 方法检测字符串中所有的字母是否都为大写。
+# Old='ghqgeGHGJHuuiyiu'
+# a=True
+# index=0
+# i=0
+# while index<len(Old):
+#     if 65<=ord(Old[index])<=90 :
+#         while i<len(Old) :
+#             if 97<=ord(Old[i])<=122:
+#                 a=False
+#                 break
+#             i=i+1
+#     index=index+1
+# print(a)
+
+# 18.str.lower方法的实现：
+# 方法的定义：Python lower() 方法转换字符串中所有大写字符为小写。
+# Old='GHGJGyuyiuHUK$$'
+# i=0
+# while i<len(Old):
+#     if 65<=ord(Old[i])<=90:
+#         a=chr(ord(Old[i])+32)
+#         L=Old[:i]
+#         R=Old[i+1:]
+#         new=L+a+R
+#         Old=new       
+#     i+=1
+# print(new)
+
+# 19.str.join方法的实现：
+# 方法的定义：Python join() 方法用于将序列中的元素以指定的字符连接生成一个新的字符串。
+# Old=['qwer','asdf','zxcv']
+# Connect=input("请输入连接符:")
+# Len=len(Old)
+# Result=''
+# i=0
+# while i<Len :
+#     Result=Result+Old[i]+Connect
+#     i=i+1
+# Result=Result[:len(Result)-1]
+# print(Result)
+
+# 20.str.ljust方法的实现：
+# 方法的定义：Python ljust() 方法返回一个原字符串左对齐,并使用空格填充至指定长度的新字符串。如果指定的长度小于原字符串的长度则返回原字符串。
+# Old='ghgetywtqu!!!!!'
+# width=int(input("请输入长度:"))
+# fill=input("请输入填充字符:")
+# i=0
+# result=Old
+# while i<width:
+#     result=result+fill
+#     i=i+1
+# print(result)
+
+# 21.str.split方法的实现：
+# 方法的定义：Python split() 通过指定分隔符对字符串进行切片，如果参数 num 有指定值，则仅分隔 num 个子字符串。
+
+# 22.str.startswith方法的实现：
+# 方法的定义：Python startswith() 方法用于检查字符串是否是以指定子字符串开头，如果是则返回 True，否则返回 False。如果参数 beg 和 end 指定值，则在指定范围内检查。
+# Old='dhgjaghdgytqeu'
+# Target=list(input("请输入需要查找字符:"))
+# Start=int(input("请输入开始位置:"))
+# End=int(input("请输入结束位置:"))
+# NewStr=Old[Start:End+1]
+# Len=len(Old)
+# result=False
+# indexTarget,indexOld=0,0
+# while indexTarget<len(Target) :
+#     if Target[indexTarget]==Old[indexOld]:
+#         result=True
+#     else:
+#         result=False
+#         break
+#     indexTarget=indexTarget+1
+#     indexOld=indexOld+1
+# print(result)
+
+# 23.str.zfill方法的实现：
+# 方法的定义：Python zfill() 方法返回指定长度的字符串，原字符串右对齐，前面填充0。
+# Old='reqwtrqtwt'
+# width=int(input("请输入长度:"))
+# Len=len(Old)
+# i=0
+# result=''
+# while i<width-Len:
+#     result=result+'0'
+#     i=i+1
+# result=result+Old
+# print(result)
+
+# 24.str.swapcase方法的实现：
+# 方法的定义：Python swapcase() 方法用于对字符串的大小写字母进行转换。
+# Old='qeASAjhQyffTFtdtDFjrYR'
+# lOld=list(Old)
+# i=0
+# while i<len(lOld):
+#     if 65<=ord(lOld[i])<=90:
+#         lOld[i]=chr(ord(lOld[i])+32)        
+#     elif 97<=ord(lOld[i])<=122:
+#         lOld[i]=chr(ord(lOld[i])-32) 
+#     i=i+1
+# result=''
+# a=0
+# while a<len(lOld):
+#     result=result+lOld[a]
+#     a=a+1
+# print(result)
