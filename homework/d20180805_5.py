@@ -207,30 +207,30 @@
 # print(list1)
 
 # 13.str.center方法的实现：
-# 方法定义：center()返回一个原字符串居中,并使用空格填充至长度 width 的新字符串。默认填充字符为空格。
-# A="qwertyuiop"
-# fill=input("please input a word what you want to fill:")
-# width=int(input('please input width you want:'))
+# 方法定义：center()返回一个原字符串居中,并使用空格填充至长度 Width 的新字符串。默认填充字符为空格。
+# A="qwerasdfzxcv"
+# fill=input("请输入一个填充字符:")
+# Width=int(input('请输入长度:'))
 # Len=len(A)
-# halfLen=int(Len/2)
-# halfWidth=int(width/2)
-# L=A[0:halfLen]
-# Rr=A[halfLen:]
+# HalfLen=int(Len/2)
+# HalfWidth=int(Width/2)
+# L=A[0:HalfLen]
+# R=A[HalfLen:]
 # L1=''
 # Len1=len(L)
-# Len2=len(Rr)
+# Len2=len(R)
 # i=0
-# while i<halfWidth-Len2 :
-#     Rr=Rr+fill
-#     i+=1
-# i1=0
-# while i1<=halfWidth-Len1-1 :
+# while i<HalfWidth-Len2 :
+#     R=R+fill
+#     i=i+1
+# j=0
+# while j<=HalfWidth-Len1-1 :
 #     L1=L1+fill
-#     if i1==halfWidth-Len1-1 :
+#     if j==HalfWidth-Len1-1 :
 #         L1=L1+L
 #         break
-#     i1+=1
-# print(L1+Rr)
+#     j=j+1
+# print(L1+R)
 
 # 14.str.count方法的实现：
 # 方法的定义：Python count() 方法用于统计字符串里某个字符出现的次数。可选参数为在字符串搜索的开始与结束位置。
@@ -318,11 +318,11 @@
 # 20.str.ljust方法的实现：
 # 方法的定义：Python ljust() 方法返回一个原字符串左对齐,并使用空格填充至指定长度的新字符串。如果指定的长度小于原字符串的长度则返回原字符串。
 # Old='ghgetywtqu!!!!!'
-# width=int(input("请输入长度:"))
+# Width=int(input("请输入长度:"))
 # fill=input("请输入填充字符:")
 # i=0
 # result=Old
-# while i<width:
+# while i<Width:
 #     result=result+fill
 #     i=i+1
 # print(result)
@@ -353,11 +353,11 @@
 # 23.str.zfill方法的实现：
 # 方法的定义：Python zfill() 方法返回指定长度的字符串，原字符串右对齐，前面填充0。
 # Old='reqwtrqtwt'
-# width=int(input("请输入长度:"))
+# Width=int(input("请输入长度:"))
 # Len=len(Old)
 # i=0
 # result=''
-# while i<width-Len:
+# while i<Width-Len:
 #     result=result+'0'
 #     i=i+1
 # result=result+Old
