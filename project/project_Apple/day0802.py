@@ -305,7 +305,7 @@ listOri.clear()      #
 listOri.copy()       #
 listOri.count('a')   #
 listOri.extend([3])
-listOri.index(3,0,8) #
+listOri.index(1,2,3) #
 listOri.insert(0,[1,3])
 listOri.pop()
 listOri.remove(2)
@@ -315,7 +315,7 @@ listOri.sort()       #
 strOri.center(10,'*')
 strOri.count('a')
 strOri.endswith()
-strOri.find('a')
+strOri.find('a',1,8)?strOri.index("a",1,8)
 strOri.isalnum()
 strOri.isdigit()
 strOri.istitle()
@@ -332,3 +332,15 @@ strOri.title()
 strOri.zfill()
 
 
+1:331, 
+2:308,313,
+3:308,
+4:308,315,306
+5:329,
+6:
+listOri.count('a') 
+listOri.index(1,2,3)
+listOri.sort() 
+strOri.center(10,'*')
+strOri.split(sep='y',maxsplit=3)
+strOri.title()
