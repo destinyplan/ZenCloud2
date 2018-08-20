@@ -1,0 +1,37 @@
+1.# fdisk /dev/sdb
+# lsblk
+# pvcreate /dev/sdb{1,2,5}
+# pvcreate /dev/sdc{1,5,6,7}
+# pvs
+# vgcreate vg1 /dev/sdb{1,2,5} /dev/sdc{1,5,6,7}
+# lvcreate -L 1024M -n lv1 vg1
+# lvcreate -L 800M -n lv2 vg1
+# lvs
+# mkfs.xfs /dev/vg1/lv1
+# mount /dev/vg1/lv1 
+# mkfs.xfs /dev/vg1/lv2
+# mount /dev/vg1/lv2 /tools
+# mkdir /tools
+# df -h
+# umount /dev/vg1/lv1
+# fdisk /dev/sdb(将分区“Linux”的类型更改为“Linux LVM”)
+2.# lvextend -L 2G /dev/vg1/lv1
+# mkdir /soft
+# mount /dev/vg1/lv1 /soft/
+# lvextend -L 1500M /dev/vg1/lv2
+# mount /dev/vg1/lv2 /tools
+3.#df -h
+# mkfs.ext4 /dev/vg1/lv1
+# umount /dev/vg1/lv1
+# e2fsck /dev/vg1/lv1 -f
+# resize2fs /dev/vg1/lv1 1500M
+#lsblk
+# lvreduce -L 1500M /dev/vg1/lv1
+# mount /dev/vg1/lv1 /tools
+# df -h
+4.# lvcreate -L 100M -s -n lv2Snapshot /dev/vg1/lv2
+# mkdir /mnt/snap
+# mount /dev/vg1/lv2 /mnt/snap
+# ls /mnt/snap/
+
+
