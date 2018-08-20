@@ -11,29 +11,25 @@
 # mkfs.xfs /dev/vg1/lv2
 # mkdir /tools
 # mount /dev/vg1/lv2 /tools
-# df -h
-# umount /dev/vg1/lv1
-# fdisk /dev/sdb(将分区“Linux”的类型更改为“Linux LVM”)
 2.将lv1扩充到2G并挂载到/soft/，将lv2扩充到1.5G并重新挂载：
 # lvextend -L 2G /dev/vg1/lv1
+# mkfs.ext4 /dev/myvg/lv1
 # mkdir /soft
 # mount /dev/vg1/lv1 /soft/
 # lvextend -L 1500M /dev/vg1/lv2
 # mount /dev/vg1/lv2 /tools
 3.将lv1缩容到1.5G并重新挂载：
-#df -h
-# mkfs.ext4 /dev/vg1/lv1
 # umount /dev/vg1/lv1
-# e2fsck /dev/vg1/lv1 -f
+# e2fsck -f /dev/vg1/lv1 
 # resize2fs /dev/vg1/lv1 1500M
-#lsblk
 # lvreduce -L 1500M /dev/vg1/lv1
 # mount /dev/vg1/lv1 /tools
 # df -h
 4.对lv2进行快照lv2Snapshot，并查看其中的内容
 # lvcreate -L 100M -s -n lv2Snapshot /dev/vg1/lv2
-# mkdir /mnt/snap
-# mount /dev/vg1/lv2 /mnt/snap
+#mkdir /lv2Snapshot
+#mount -o ro /dev/vg1/lv2Snapshot /lv2Snapshot/
+
 
 
 
