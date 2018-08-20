@@ -25,6 +25,7 @@ mount /dev/myvg/lv1 /soft/
 vgextend myvg /dev/sdc{1,5,6}
 umount /tools/
 lvextend -L 1500M /dev/myvg/lv2
+resize2fs /dev/myvg/lv2
 mount /dev/myvg/lv2 /tools/
 8.½«lv1 ËõÈÝµ½1.5G:
 umount /dev/myvg/lv1
