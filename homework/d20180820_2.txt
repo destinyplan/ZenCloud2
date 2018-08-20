@@ -1,0 +1,35 @@
+1.创建一个逻辑卷lv1，大小为1G，lv2，大小800MB并挂在到/tools/
+fdisk sdb np1+300M np2+500M ne3 nl4+1500M nl5+100M  t125 8e w
+fdisk sdc np1+1000M ne2 nl3+300M nl4+400M  t134 8e w
+pvcreate /dev/sdb{1,2,5} /dev/sdc{1,3}
+vgcreate /dev/xue /dev/sdb{1,2,5} /dev/sdc{1,3}
+lvcreate -L 1G -n lv1 /dev/xue
+lvcreate -L 800M -n lv2 /dev/xue
+mkfs.xfs /dev/xue/lv2
+mkdir /tools
+mount /dev/xue/lv2 /tools
+2.将lv1扩充到2G并挂载到/soft/，将lv2扩充到1.5G并重新挂载
+vgdisplay 
+vgextend xue /dev/sd4
+lvextend -L 2G /dev/xue/lv1
+mkfs.ext4 /dev/xue/lv1
+mkdir /soft
+mount /dev/xue/lv1 /soft
+umount /dev/xue/lv2
+vgdisplay
+vgextend xue /dev/sdc4
+lvextend -L 1500M /dev/xue/lv2
+mount /dev/xue/lv2 /tools
+xfs_growfs /dev/xue/lv2
+3.将lv1缩容到1.5G
+umount /dev/xue/lv1
+df -h
+e2fsck -f /dev/xue/lv1
+resize2fs /dev/xue/lv1 1500M
+lvreduce -L 1500M /dev/xue/lv1
+mount /dev/xue/lv1 /soft
+4.对lv2进行快照lv2Snapshot，并查看其中的内容
+lvcreate -L 100M -s -n lv2Snapshot /dev/xue/lv2
+mkdir /lv2Snapshot
+mount /dev/xue/lv2Snapshot /lv2Snapshot
+ls /lv2Snapshot
