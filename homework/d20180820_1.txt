@@ -1,0 +1,39 @@
+1.分区并改名:
+fdisk /dev/sdb
+n--> p -->+300M -->n-->p-->+500M -->e-->+2G -->l-->+1.5G
+fdisk /dev/sdc
+n--> p-->+1G -->e-->+2G -->l-->+300M-->l-->+400M-->l-->+1G
+将主分区和逻辑分区改为8e
+2.创建物理卷pv:
+pvcreate  /dev/sdb{1,2,5} /dev/sdc{1,5,6,7}
+3.创建卷组vg:
+vgcreate myvg /dev/sdb{1,2,5} /dev/sdc7
+4.创建逻辑卷lv:
+lvcreate -L 1G -n lv1 /dev/myvg/
+lvcreate -L 800M -n lv2 /dev/myvg/
+lvscan
+5.格式化lv2并挂载到/tools/下:
+mkfs.ext4 /dev/myvg/lv2
+mkdir /tools
+mount  /dev/myvg/lv2 /tools/
+6.将lv1扩充到2G并挂载到/soft/
+lvextend -L 2G /dev/myvg/lv1
+mkfs.ext4 /dev/myvg/lv1
+mkdir /soft/
+mount /dev/myvg/lv1 /soft/
+7.将lv2 扩充到1.5G并重新挂载
+vgextend myvg /dev/sdc{1,5,6}
+umount /tools/
+lvextend -L 1500M /dev/myvg/lv2
+resize2fs /dev/myvg/lv2
+mount /dev/myvg/lv2 /tools/
+8.将lv1 缩容到1.5G:
+umount /dev/myvg/lv1
+e2fsck -f /dev/myvg/lv1
+resize2fs /dev/myvg/lv1 1500M
+lvreduce -L 1500M /dev/myvg/lv1
+mount /dev/myvg/lv1 /tools/
+9.对lv2进行快照:
+lvcreate -L 100M -s -n Snapshot /dev/myvg/lv2
+mkdir /Snapshot
+mount -o ro /dev/myvg/Snapshot /Snapshot/
