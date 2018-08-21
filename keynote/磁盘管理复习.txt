@@ -1,0 +1,81 @@
+磁盘管理
+
+df -h
+lsblk
+blkid 
+
+1.MBR GPT
+分区
+fdisk 4/3+1 1--->logic
+gdisk 128
+格式化
+mkfs.ext4  .xfs  partion
+mkfs -t xfs
+挂载
+mount 设备 挂载点
+umount 设备/挂载点
+永久挂载---/etc/fstab
+UUID=xxxxx    /tools   xfs  defaults   0   0   
+光盘的挂载  iso9660
+
+2.swap
+fdisk/gdisk   id->swap分区id
+格式化
+mkswap /dev/swap1
+启用
+swapon 设备路径
+停用
+swapoff  设备路径
+永久挂载---/etc/fstab
+UUID=xxxxx    swap   swap  defaults   0   0  
+
+3.lvm---化零为整，伸缩自如，
+创建物理卷pv---创建卷组vg---从vg中创建逻辑卷lv---常规的格式化挂载操作
+pvcreate  分区设备                
+查看:pvs pvdisplay
+vgcreate   卷组名  [pv列表]                
+查看:vgs vgdisplay
+lvcreate   -L 600M  -n 逻辑卷名 卷组名vg  
+查看:lvs  lvdisplay
+
+扩容
+有无文件系统及是否挂载
+没有----直接扩容
+有---卸载-扩容-挂载-文件系统重新识别
+vgextend  vgname  pvname
+lvextend -L +200M lvname
+ext2/3/4: resize2fs lv设备路径
+xfs: xfs_growfs lv设备路径
+
+缩容
+卸载---文件系统检查---文件系统缩容---lv缩容---重新挂载
+e2fsck -f  lv设备路径
+resize2fs  lv设备路径 新size
+lvreduce  -L 500M   lv设备路径
+
+快照
+创建快照--挂载快照--查看
+lvcreate -s -L 300M -n snapname lvname
+
+删除
+del lv --- del vg --- del pv
+lvremove
+vgremove
+pvremove
+
+4.RAID
+RAID 0:n>=2,读写速度最快，安全性最低
+RAID 1:n>=2,读写和单盘相比没有变化，安全性最高，设备利用率 1/n
+RAID 5:n>=3,1个盘存数据校验位，读写速度介于0-1之间，安全性:任意一个盘损害不影响，2个或以上会坏。
+RAID 10：内部做RAID1()，多个RAID1做RAID 0()，n>=4,
+RAID 01：内部0，外部是1，
+RAID 50:  内部5.外部0
+
+使用mdadm这款软件包 yum install -y mdadm
+流程: 准备多个size一致分区(id=lvm)---创建RAID(1,0,5,xx)---格式化---挂载(永久挂载)
+
+mdama -C raid设备路径 -l1（--level） -n4 [分区list]
+
+
+
+ 
