@@ -1,0 +1,302 @@
+1，ls:
+2,  ll ,ls -l
+3, echo
+4,touch
+5,mkdir
+6,rm   -f  -r  -v  
+7,mv origin dest 
+8,  cp origin dest
+9,   cat/more/head/less
+10, cd
+11,pwd
+
+用户管理:
+/etc/passwd  /etc/shadow  /etc/group
+1,id
+2,su user
+3,useradd -u -g -G -c -d  name
+4,userdel -r name
+5,groupadd -g gname
+6,groupdel gname
+7,passwd name
+8,usermod
+9,groupmod
+10,U/L  usermod
+     u/l   passwd
+
+权限:
+ugo,acl,附加权限(suid,guid,sbit),隐藏权限
+1,chmod 777/u+r/o-x/g=r/a-r file
+2,chown id/name file 
+3,chgrp gname/gid  file
+
+4,getfacl [--omit-header/-c] file
+5.setfacl u/g/o:name:rwx file
+6,chacl
+
+4,2,1
+4:suid，针对可执行程序，对文件夹无效
+2:guid，针对可执行文件，针对文件夹，让文件夹中的新文件的所属组继承文件夹的所属组
+1:sbit,只能针对文件夹，可以让文件夹内的文件仅可以由所属者删除
+chmod 4777  file/dir
+chmod 2777  file/dir
+chmod 1777  file/dir
+
+chmod u+s file
+chmod g+s file
+chmod o+t file
+
+8,chattr -S/-L/-A file
+9,lsattr file
+------O-------A-- filr
+
+进程管理
+1，ps aux/-ef    | grep key
+     ps axo pid,ppid,%cpu,%mem --sort=key | 
+2，top
+3,   kill -1/9/15/18/19/20 pid
+4,   w name
+5,pstree killall pkill -t 
+
+6 nice
+7 proc  /proc/
+
+管道，重定向
+1，< << > >>
+输入，标准输出，错误输出
+ls path 1> t1.log
+ls path 1>> t1.log
+ls virturlpath 2>error.log
+ls virturlpath 2>>error.log
+ls path1 vpath2 &>2.log
+cat > 1.txt << EOF
+2，cod1|cod2|cod3|cod4.......
+ls | grep key | grep key2 |wc -l
+3,tee管道
+cod1 | tee 1.txt
+
+文件查找
+1，whereis 命令
+3,locate key
+2, find key
+
+压缩
+1，zip unzip
+zip name.zip file fiel2 file3 
+zip name.zip dir -r
+unzip name.zip
+unzip -z name.zip
+2，gzip gunzip
+3，gzip2 gunzip2
+5，tar 
+tar -c x.tar.gz filelist
+tar -x x.tar.gz [-C dir]
+tar -t x.tar.gz 
+
+存储
+1,lsblk /dev/sdb1
+2,blkid /dev/sdb2
+3,df -h
+4,MBR/GPT
+MBR：4主分区/（3+1），单个分区大小4TB
+GPT:128分区。
+5,fdisk/gdisk
+l:
+d:
+n: p,e,l
+w
+p
+6,mkfs /mkfs.xfs /mkfs.ext4
+7.mount 设备 文件夹
+8，umount 设备/文件夹
+9，/etc/fstab
+uuid=''  挂载点  xfs  defaults 0 0
+10,mount dev/sr0 /mnt/cdrom
+/dev/sr0  /mnt/cdrom  iso9660  defaults 0 0
+
+mkswap
+swapon /swapoff
+uuid=''  swap  swap  defaults 0 0
+
+lvm:逻辑卷管理:
+分区-创建物理卷--创建卷组--从卷组中创建逻辑卷--格式化--挂载
+1，pvcreate /dev/sdb2 
+2，vgcreate vgname   /dev/sdb2  /dev/sdb3
+3,   lvcreate -L 500M -n lvname vgname
+4,mkfs.xfs  /dev/vgname/lvname
+
+扩容/缩容/快照
+扩容:
+1，该逻辑卷没有分区，没有挂载
+直接扩容，
+vgextend vgname  /dev/sdb{4,5}
+lvextend -L +500M lvname
+2,有分区，有挂载
+先umount
+vgextend
+lvextend
+ext:resize2fs lv路径
+xfs:xfs_growfs lv路径
+mount
+
+缩容:
+lvreduce -L 300M lvname
+有分区有挂载
+umount
+e2fsck
+resize2fs lvname 800M
+lvreduce -L 300M lvname
+mount
+
+快照:snapshot
+lvcreate -L 800M -s -n snap_v1 /dev/vg/lv1
+mount snap_v1 挂载点
+
+RAID:独立硬盘冗余阵列
+0，1，5，10，01，50
+硬件RAID，软件RAID，
+0:n>=2,读写速度n*单个磁盘的读写速度(RAID中最快),一块坏整体坏
+1:n>=2,一份数据多个盘各存一份，写速度不变，读速度是n*个数，安全性中最高，
+5:n>=3,3块中两块放数据，另一块数据校验盘，
+10:n>=4,
+01:
+50:
+软件包:mdadm
+mdadm -C /dev/md0 -l5 -n3 -x1 /dev/sd{d,e,f,g}
+
+
+软件管理
+rpm，yum: *.rpm
+apt-get: *.deb
+源码:（需要编译的和不需要编译，解压即用的两种）
+
+RetHot系:
+rpm:
+-i 安装  -ivh：以#为进度条显示整个安装过程
+-Uvh 升级
+-e 卸载
+-q 查看
+-qi  qc  qd ql  qa
+-qf 文件
+
+yum:
+yum install -y wget/vim
+yum upgarde
+yum info
+yum list
+yum provider
+
+yum源的配置：
+1，本地
+2，国内源
+3，epel---redhat(centos)---fedora
+4，remi---太新，很大几率会有兼容性问题
+
+配置文件位于/etc/yum.repo.d/，后缀名为*.repo
+国内源:
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+
+手动:
+创建/etc/yum.repos.d/xxx.repo
+[LocYum]
+name=local dvd 
+baseurl=file:///mnt/cdrom 
+gpgcheck=0 
+enabled=1
+
+3,epel
+4.remi
+
+yum clean all
+yum repolist/makecache
+
+源码：
+下载，解压，修改配置文件，编译(make)，安装
+
+网络管理:
+1,OSI七层模型:物理层，数据链路层，网路曾，传输层，会话层，表示层，应用层
+2，TCP/IP协议簇
+3，IP协议工作在-网络层
+4，TCP/UDP --传输层
+
+IPv4：32位二进制（00000000 00000000 00000000 00000000）
+192.168.1.1---点分表示法
+A，B，C，D，E五类地址
+A:1-127      /8
+B:128-191   /16
+C:192-223  /24
+D:224-239  组播地址
+E:240-247 -保留
+
+255---2^8
+0,255
+
+ping
+ip a
+
+1.桌面环境的图形化配置
+2，nmtui命令行下的简单的图形化工具
+systemctl restart network
+3，手动修改配置文件
+/etc/sysconfig/network-scripts/
+
+DEVICE=ens33
+NAME=yln
+ONBOOT=yes
+BOOTPROTO=static
+IPADDR=192.168.64.108
+MASK=255.255.255.0
+GATEWAY=192.168.64.254
+DNS1=114.114.114.114
+DNS2=8.8.8.8
+
+systemctl restart network
+
+4.临时修改，
+ip：ipconfig ens33 x.x.x.x netmask x.x.x.x
+网关: route add default gw x.x.x.x
+DNS:
+
+5，nmcli
+
+计划任务:
+1,at 仅适用于一次命令
+1.1 batch 
+2,cron适合周期性的任务
+
+启动分析
+日志管理
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
